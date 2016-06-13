@@ -33,3 +33,5 @@ RUN curl -fsSL -o piwik.tar.gz \
 COPY php.ini /usr/local/etc/php/php.ini
 
 VOLUME /var/www/html
+
+ADD root /
