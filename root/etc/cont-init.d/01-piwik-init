@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv sh
+set -e
+
+
+curl -fsSL -o /usr/src/piwik/misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+ gunzip /usr/src/piwik/misc/GeoIPCity.dat.gz
