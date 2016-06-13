@@ -10,7 +10,8 @@ RUN apk add --no-cache \
       ssmtp \
       gnupg \
       curl \
-      libtool
+      libtool \
+      zip
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr \
  && docker-php-ext-install gd mbstring pdo_mysql zip \
@@ -24,9 +25,9 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --w
  && gpg --batch --verify piwik.tar.gz.asc piwik.tar.gz \
  && tar -xzf piwik.tar.gz -C /usr/src/ \
  && curl -fsSL -o GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
- && tar xzf GeoIPCity.dat.gz -C /usr/src/piwik/misc/ \
+ && gunzip GeoIPCity.dat.gz -C /usr/src/piwik/misc/ \
  && curl -fsSL -o CountryGeoIP.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz \
- && tar xzf CountryGeoIP.dat.gz -C /usr/src/piwik/misc/ \
+ && gunzip xzf CountryGeoIP.dat.gz -C /usr/src/piwik/misc/ \
  && rm -rf /tmp
 
 VOLUME /var/www/html
