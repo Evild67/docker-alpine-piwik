@@ -5,17 +5,16 @@ ARG PIWIK_VERSION=2.16.1
 RUN apk add --no-cache \
       jpeg-dev \
       freetype-dev \
-      geoip \
       libpng-dev \
       ssmtp \
       zip \
       gnupg \
-      curl
+      curl \
+      libtool
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr \
- && docker-php-ext-install gd mbstring pdo_mysql zip
-
-RUN pecl install APCu geoip
+ && docker-php-ext-install gd mbstring pdo_mysql zip \
+&&  pecl install APCu
 
 
 
@@ -31,6 +30,9 @@ RUN curl -fsSL -o piwik.tar.gz \
  && rm piwik.tar.gz
 
 COPY php.ini /usr/local/etc/php/php.ini
+
+RUN curl -fsSL -o /usr/src/piwik/misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
+ && gunzip /usr/src/piwik/misc/GeoIPCity.dat.gz
 
 VOLUME /var/www/html
 
