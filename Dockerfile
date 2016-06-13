@@ -25,9 +25,9 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --w
  && gpg --batch --verify piwik.tar.gz.asc piwik.tar.gz \
  && tar -xzf piwik.tar.gz -C /usr/src/ \
  && curl -fsSL -o GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
- && gunzip GeoIPCity.dat.gz -d /usr/src/piwik/misc/ \
+ && gunzip -c GeoIPCity.dat.gz > /usr/src/piwik/misc/ \
  && curl -fsSL -o CountryGeoIP.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz \
- && gunzip CountryGeoIP.dat.gz -d /usr/src/piwik/misc/ \
+ && gunzip -c CountryGeoIP.dat.gz > /usr/src/piwik/misc/ \
  && rm -rf /tmp
 
 VOLUME /var/www/html
