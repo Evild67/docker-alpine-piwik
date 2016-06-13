@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+
+docker build -t evild/alpine-piwik:latest .
+docker inspect evild/alpine-piwik:latest
+
+
+docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASSWORD
+docker push evild/alpine-piwik:latest
