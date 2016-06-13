@@ -6,9 +6,9 @@ default_text="Gitlab Job $CI_BUILD_ID :"
 tweet_text="$default_text #Docker piwik $CI_BUILD_REF_NAME build"
 
 if [ $PASSED = true ]; then
-  tweet_text="$tweet_text succeed https://mercu.re/25xVQDM"
+  tweet_text="$tweet_text succeed https://mercu.re/1YllV3e"
 else
-  tweet_text="$tweet_text failed https://mercu.re/25xVQDM"
+  tweet_text="$tweet_text failed https://mercu.re/1YllV3e"
 fi
 
 
