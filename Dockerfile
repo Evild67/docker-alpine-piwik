@@ -28,8 +28,7 @@ RUN curl -fsSL -o piwik.tar.gz \
  && gpg --batch --verify piwik.tar.gz.asc piwik.tar.gz \
  && rm -r "$GNUPGHOME" piwik.tar.gz.asc \
  && tar -xzf piwik.tar.gz -C /usr/src/ \
- && rm piwik.tar.gz \
- && chfn -f 'Piwik Admin' www-data
+ && rm piwik.tar.gz
 
 COPY php.ini /usr/local/etc/php/php.ini
 
